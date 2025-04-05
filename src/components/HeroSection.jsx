@@ -45,22 +45,12 @@ export default function Navbar() {
               />
             </a>
           </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
               <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-white">
                 {item.name}
               </a>
-            
+          
             ))}
             <Link 
             to={isLoggedIn? '/admission' : '/login'} 
@@ -72,6 +62,48 @@ export default function Navbar() {
             }} className='text-sm/6 font-semibold text-white'>
               Admission
             </Link>
+          </div>
+          <div className="lg:hidden">
+            {mobileMenuOpen && (
+              <div className="absolute top-0 left-0 right-0 bg-white shadow-lg">
+                {navigation.map((item) => (
+                  <a key={item.name} href={item.href} className="block text-sm/6 font-semibold text-black p-4">
+                    {item.name}
+                  </a>
+                ))}
+                <Link 
+                  to={isLoggedIn ? '/admission' : '/login'} 
+                  onClick={(e) => {
+                    if (!isLoggedIn) {
+                      e.preventDefault();
+                      navigate('/login');
+                    }
+                  }} 
+                  className='block text-sm/6 font-semibold text-black p-4'>
+                  Admission
+                </Link>
+                {isLoggedIn ? (
+                  <button onClick={handleLogout} className="block text-sm/6 font-semibold text-black p-4">
+                    Log out
+                  </button>
+                ) : (
+                  <Link to="/login" className="block text-sm/6 font-semibold text-black p-4">
+                    Log in
+                  </Link>
+                )}
+                <button onClick={() => setMobileMenuOpen(false)} className="block text-sm/6 font-semibold text-black p-4">
+                  Close Menu
+                </button>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon aria-hidden="true" className="size-6" />
+            </button>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {isLoggedIn ? (
