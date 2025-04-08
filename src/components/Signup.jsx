@@ -92,7 +92,7 @@ export default function Signup() {
               className="mt-1 text-gray-600 bg-white p-2 w-full border rounded-lg focus:ring focus:ring-white"
               required
             />
-          </div>
+          </div> 
           <button
           onClick={handleSubmit}
             type="submit"

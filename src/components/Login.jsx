@@ -49,7 +49,7 @@ const Login = () => {
       <div className='flex items-center justify-center min-h-screen'>
         <div className='min-h-screen bg-center ' style={{ backgroundImage: `url(${loginimage})` }}>
           <div className='flex items-center justify-center min-h-screen'>
-            <div className="bg-purple-900 p-8 rounded-lg shadow-md w-[400px]"> {/* Changed Card background */}
+            <div className="bg-purple-900 p-8 rounded-lg shadow-md w-full max-w-sm"> {/* Changed Card background and made it responsive */}
               <h2 className="text-2xl text-white font-bold text-center mb-4">Login</h2>
 
               {errorMessage && <h3 className="text-red-500 text-center">{errorMessage}</h3>} {/* Error message display */}
@@ -57,11 +57,11 @@ const Login = () => {
 
               <Form onFinish={onFinish}>
                 <Form.Item name="email" rules={[{ required: true, message: "Please enter your email!", type: "email" }]}>
-                  <Input size="large" placeholder="Email"  />
+                  <Input size="large" placeholder="Email" className="w-full" /> {/* Made input full width */}
                 </Form.Item>
 
                 <Form.Item name='password' rules={[{ required: true, message: "Password is required" }]}>
-                  <Input.Password size="large" placeholder="Password" />
+                  <Input.Password size="large" placeholder="Password" className="w-full" /> {/* Made input full width */}
                 </Form.Item>
 
                 <Form.Item>
@@ -71,7 +71,7 @@ const Login = () => {
                 </Form.Item>
               </Form>
 
-              <div className='flex gap-4'>
+              <div className='flex flex-col gap-4 items-center md:flex-row'> {/* Adjusted layout for mobile responsiveness */}
                 <p className="text-white">Don't have an account?</p>
                 <button
                   onClick={handleClick}
